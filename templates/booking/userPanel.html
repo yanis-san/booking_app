@@ -1,0 +1,8 @@
+<h2>Your Appointments</h2>
+<ul>
+    {% for appointment in appointments %}
+    <li>{{ appointment.day }} at {{ appointment.time }} - {{ appointment.service.name }}
+        <a href="{% url 'userUpdate' appointment.id %}">Edit</a>
+    </li>
+    {% endfor %}
+</ul>

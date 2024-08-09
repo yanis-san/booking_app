@@ -1,0 +1,29 @@
+# Ignorer les fichiers de l'historique
+.history/
+
+# Ignorer les fichiers de base de données
+db.sqlite3
+
+# Ignorer les fichiers de configuration de l'environnement
+.env
+
+# Ignorer les fichiers de dépendances
+Pipfile.lock
+
+# Ignorer les fichiers compilés Python
+__pycache__/
+*.pyc
+
+# Ignorer les fichiers de logs
+*.log
+
+# Ignorer les fichiers de cache
+*.cache
+*.bak
+
+# Ignorer les fichiers de dossiers spécifiques
+booking/__pycache__/
+config/__pycache__/
+home/__pycache__/
+templates/__pycache__/
+useraccount/__pycache__/

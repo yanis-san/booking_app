@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+Les petits rendez-vous
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="hero bg-base-200 min-h-screen">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">Les petits rendez-vous</h1>
+        <p class="py-6">
+Bienvenue sur l'application des petits rendez-vous !
+        </p>
+        <a class="btn btn-primary bg-green-500 hover:bg-green-600" href="{% url "booking:booking" %}">Prendre rendez-vous</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

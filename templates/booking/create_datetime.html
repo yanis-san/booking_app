@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form | crispy}}
+    <button type="submit">Créer le slot de rendez-vous</button>
+
+    
+</form>
+{% endblock content %}

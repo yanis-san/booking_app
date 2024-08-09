@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="flex items-center justify-center min-h-screen bg-base-200">
+    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <form method="post" hx-post="{% url 'booking:booking' %}" hx-target="#message" hx-swap="innerHTML">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div id="time-slots">
+                <!-- Les créneaux horaires seront chargés ici -->
+            </div>
+            <button type="submit" class="btn btn-active btn-primary w-full mt-4">Valider le rendez-vous</button>
+        </form>
+        <div id="message" class="mt-4 text-center text-red-500"></div> 
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://unpkg.com/htmx.org@1.5.0"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#datetime", {
+            enable: {{ dates|safe }},
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr, instance) {
+                console.log("La date a changé: " + dateStr); 
+
+                // Faire une requête AJAX manuellement
+                fetch("{% url 'booking:get_times' %}?date=" + dateStr)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('time-slots').innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de la récupération des créneaux horaires:', error);
+                        document.getElementById('time-slots').innerHTML = 'Erreur lors de la récupération des créneaux horaires';
+                    });
+            }
+        });
+    });
+</script>
+{% endblock %}

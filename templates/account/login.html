@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen">
+<form method="post" action="{% url 'account_login' %}" class="w-full max-w-sm">
+    {% csrf_token %}
+{{form|crispy}}
+<div class="flex justify-center">
+
+    <button type="submit" class="btn bg-orange-500 text-black  hover:bg-orange-600">Se connecter</button>
+    <a href="{% url 'account_signup' %}" class="btn bg-orange-500 text-black  hover:bg-orange-600">Vous n'avez pas de compte ?</a>
+</div>
+</form>
+</div>
+{% endblock content %}
